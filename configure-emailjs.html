@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure EmailJS</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ea580c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #f97316;
+        }
+        .info-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            color: #92400e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        button {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-size: 1rem;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+        .step {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f97316;
+        }
+        .step h4 {
+            margin: 0 0 10px 0;
+            color: #ea580c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Configure EmailJS</h1>
+        
+        <div class="info-box">
+            <strong>Email: chisomobanda16@gmail.com</strong><br>
+            Please get your credentials from EmailJS dashboard and enter them below.
+            Hl6r9ehRkM32nAxrg
+            Kn_7•••••••••••••••••
+        </div>
+
+        <div class="step">
+            <h4>📍 Where to find these:</h4>
+            <strong>Public Key:</strong> Account → General → Public Key<br>
+            <strong>Service ID:</strong> Email Services → Your Service → Service ID<br>
+            <strong>Template ID:</strong> Email Templates → Your Template → Template ID
+        </div>
+
+        <form id="configForm">
+            <div class="form-group">
+                <label for="publicKey">Public Key</label>
+                <input type="text" id="publicKey" placeholder="EnERBtjvFnVm0Bq9SG" required>
+            </div>
+
+            <div class="form-group">
+                <label for="serviceId">Service ID</label>
+                <input type="text" id="serviceId" placeholder="service_6611c5x" required>
+            </div>
+
+            <div class="form-group">
+                <label for="templateId">Template ID</label>
+                <input type="text" id="templateId" placeholder="template_pgteb8a" required>
+            </div>
+
+            <button type="submit">Configure EmailJS</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const publicKey = document.getElementById('publicKey').value;
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+            
+            if (!publicKey || !serviceId || !templateId) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Create the updated JavaScript code
+            const updatedCode = `// Initialize EmailJS
+        (function() {
+            emailjs.init("${publicKey}");
+        })();
+
+        // In the forgot password function, update this line:
+        emailjs.send('${serviceId}', '${templateId}', templateParams)`;
+            
+            // Store in localStorage for the main page to use
+            localStorage.setItem('emailjs_config', JSON.stringify({
+                publicKey: publicKey,
+                serviceId: serviceId,
+                templateId: templateId
+            }));
+            
+            alert('EmailJS configured successfully! The login page will now use your credentials.');
+            
+            // Open the login page
+            window.open('login.html', '_blank');
+        });
+    </script>
+</body>
+</html>

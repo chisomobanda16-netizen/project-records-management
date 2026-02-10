@@ -1,0 +1,615 @@
+/* ========================================
+   OFFICIAL LOGO STYLES - PROJECT RECORDS
+   Professional Media Management System
+   ======================================== */
+
+:root {
+    /* Brand Colors */
+    --brand-orange-50: #fff7ed;
+    --brand-orange-100: #ffedd5;
+    --brand-orange-200: #fed7aa;
+    --brand-orange-300: #fdba74;
+    --brand-orange-400: #fb923c;
+    --brand-orange-500: #f97316;
+    --brand-orange-600: #ea580c;
+    --brand-orange-700: #c2410c;
+    --brand-orange-800: #9a3412;
+    --brand-orange-900: #7c2d12;
+    
+    --brand-grey-50: #f9fafb;
+    --brand-grey-100: #f3f4f6;
+    --brand-grey-200: #e5e7eb;
+    --brand-grey-300: #d1d5db;
+    --brand-grey-400: #9ca3af;
+    --brand-grey-500: #6b7280;
+    --brand-grey-600: #4b5563;
+    --brand-grey-700: #374151;
+    --brand-grey-800: #1f2937;
+    --brand-grey-900: #111827;
+}
+
+/* ========================================
+   PRIMARY LOGO - MAIN BRAND LOGO
+   ======================================== */
+
+.logo-primary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.logo-primary .logo-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand-orange-500), var(--brand-orange-600));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.logo-primary .logo-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--brand-orange-400), var(--brand-orange-600), var(--brand-orange-400));
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.logo-primary .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-primary .logo-main {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--brand-grey-800);
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.logo-primary .logo-sub {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--brand-orange-600);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Small variant */
+.logo-primary.small {
+    gap: 12px;
+}
+
+.logo-primary.small .logo-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+}
+
+.logo-primary.small .logo-main {
+    font-size: 1.4rem;
+}
+
+.logo-primary.small .logo-sub {
+    font-size: 0.8rem;
+}
+
+/* Large variant */
+.logo-primary.large {
+    gap: 20px;
+}
+
+.logo-primary.large .logo-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 2.4rem;
+}
+
+.logo-primary.large .logo-main {
+    font-size: 2.4rem;
+}
+
+.logo-primary.large .logo-sub {
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   MINIMAL LOGO - CLEAN & SIMPLE
+   ======================================== */
+
+.logo-minimal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.logo-minimal .logo-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--brand-grey-800);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-orange-500);
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.logo-minimal .logo-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brand-grey-800);
+    letter-spacing: -0.3px;
+}
+
+/* Small variant */
+.logo-minimal.small .logo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+.logo-minimal.small .logo-text {
+    font-size: 1.3rem;
+}
+
+/* Large variant */
+.logo-minimal.large .logo-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+}
+
+.logo-minimal.large .logo-text {
+    font-size: 2rem;
+}
+
+/* ========================================
+   ICON ONLY - BRAND ICON
+   ======================================== */
+
+.logo-icon-only {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--brand-orange-500), var(--brand-orange-700));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-icon-only::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, var(--brand-orange-400), var(--brand-orange-700), var(--brand-orange-400));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+/* Small variant */
+.logo-icon-only.small {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    border-radius: 12px;
+}
+
+.logo-icon-only.small::before {
+    border-radius: 12px;
+}
+
+/* Large variant */
+.logo-icon-only.large {
+    width: 120px;
+    height: 120px;
+    font-size: 3.2rem;
+    border-radius: 30px;
+}
+
+.logo-icon-only.large::before {
+    border-radius: 30px;
+}
+
+/* ========================================
+   MONOGRAM - CIRCULAR DESIGN
+   ======================================== */
+
+.logo-monogram {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--brand-grey-800), var(--brand-grey-900));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-orange-500);
+    font-size: 3rem;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-monogram::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, var(--brand-orange-500), var(--brand-grey-700), var(--brand-orange-500));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Small variant */
+.logo-monogram.small {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+}
+
+/* Large variant */
+.logo-monogram.large {
+    width: 150px;
+    height: 150px;
+    font-size: 4.5rem;
+}
+
+/* ========================================
+   HORIZONTAL LOGO - WIDE FORMAT
+   ======================================== */
+
+.logo-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.logo-horizontal .logo-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--brand-orange-500), var(--brand-orange-600));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+    flex-shrink: 0;
+}
+
+.logo-horizontal .logo-text {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--brand-grey-800), var(--brand-orange-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+/* Small variant */
+.logo-horizontal.small {
+    gap: 15px;
+}
+
+.logo-horizontal.small .logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+}
+
+.logo-horizontal.small .logo-text {
+    font-size: 1.4rem;
+}
+
+/* Large variant */
+.logo-horizontal.large {
+    gap: 25px;
+}
+
+.logo-horizontal.large .logo-icon {
+    width: 90px;
+    height: 90px;
+    font-size: 2.6rem;
+}
+
+.logo-horizontal.large .logo-text {
+    font-size: 2.8rem;
+}
+
+/* ========================================
+   BADGE LOGO - CIRCULAR DESIGN
+   ======================================== */
+
+.logo-badge {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--brand-orange-500), var(--brand-orange-700));
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-badge::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, var(--brand-orange-400), var(--brand-orange-800), var(--brand-orange-400));
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+.logo-badge .badge-icon {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.logo-badge .badge-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Small variant */
+.logo-badge.small {
+    width: 80px;
+    height: 80px;
+}
+
+.logo-badge.small .badge-icon {
+    font-size: 1.8rem;
+}
+
+.logo-badge.small .badge-text {
+    font-size: 0.6rem;
+}
+
+/* Large variant */
+.logo-badge.large {
+    width: 160px;
+    height: 160px;
+}
+
+.logo-badge.large .badge-icon {
+    font-size: 3.5rem;
+}
+
+.logo-badge.large .badge-text {
+    font-size: 1rem;
+}
+
+/* ========================================
+   LOGO ANIMATIONS
+   ======================================== */
+
+.logo-bounce {
+    animation: logoBounce 2s ease-in-out infinite;
+}
+
+@keyframes logoBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.logo-pulse {
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.logo-rotate {
+    animation: logoRotate 20s linear infinite;
+}
+
+@keyframes logoRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   RESPONSIVE LOGO ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .logo-primary .logo-main {
+        font-size: 1.4rem;
+    }
+    
+    .logo-primary .logo-sub {
+        font-size: 0.8rem;
+    }
+    
+    .logo-primary .logo-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+    
+    .logo-minimal .logo-text {
+        font-size: 1.3rem;
+    }
+    
+    .logo-minimal .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .logo-horizontal .logo-text {
+        font-size: 1.4rem;
+    }
+    
+    .logo-horizontal .logo-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-primary .logo-main {
+        font-size: 1.2rem;
+    }
+    
+    .logo-primary .logo-sub {
+        font-size: 0.7rem;
+    }
+    
+    .logo-primary .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .logo-minimal .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .logo-minimal .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   LOGO USAGE CLASSES
+   ======================================== */
+
+/* For headers */
+.logo-header {
+    margin-bottom: 20px;
+}
+
+/* For navigation */
+.logo-nav {
+    max-height: 40px;
+}
+
+/* For footer */
+.logo-footer {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.logo-footer:hover {
+    opacity: 1;
+}
+
+/* For loading screens */
+.logo-loading {
+    animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+/* For dark backgrounds */
+.logo-on-dark .logo-text,
+.logo-on-dark .logo-main {
+    color: white;
+}
+
+.logo-on-dark .logo-sub {
+    color: var(--brand-orange-300);
+}
+
+/* For light backgrounds */
+.logo-on-light .logo-icon {
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+    .logo-primary .logo-icon,
+    .logo-horizontal .logo-icon,
+    .logo-icon-only {
+        background: var(--brand-grey-800) !important;
+        box-shadow: none !important;
+    }
+    
+    .logo-primary .logo-icon::before,
+    .logo-horizontal .logo-icon::before,
+    .logo-icon-only::before {
+        display: none !important;
+    }
+    
+    .logo-horizontal .logo-text {
+        background: none !important;
+        -webkit-text-fill-color: var(--brand-grey-800) !important;
+    }
+}

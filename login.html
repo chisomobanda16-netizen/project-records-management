@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Professional Media Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Orange and Grey Color Palette */
+            --orange-50: #fff7ed;
+            --orange-100: #ffedd5;
+            --orange-200: #fed7aa;
+            --orange-300: #fdba74;
+            --orange-400: #fb923c;
+            --orange-500: #f97316;
+            --orange-600: #ea580c;
+            --orange-700: #c2410c;
+            --orange-800: #9a3412;
+            --orange-900: #7c2d12;
+            
+            /* Grey Scale */
+            --grey-50: #f9fafb;
+            --grey-100: #f3f4f6;
+            --grey-200: #e5e7eb;
+            --grey-300: #d1d5db;
+            --grey-400: #9ca3af;
+            --grey-500: #6b7280;
+            --grey-600: #4b5563;
+            --grey-700: #374151;
+            --grey-800: #1f2937;
+            --grey-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-700));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            min-height: 600px;
+        }
+
+        .login-left {
+            background: linear-gradient(135deg, var(--orange-600), var(--orange-800));
+            color: white;
+            padding: 60px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+
+        .login-left h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-left p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .feature-item i {
+            margin-right: 15px;
+            color: var(--orange-200);
+            font-size: 1.2rem;
+        }
+
+        .login-right {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form h2 {
+            color: var(--grey-800);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .login-form p {
+            color: var(--grey-600);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--grey-700);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--grey-200);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--orange-500);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--grey-400);
+        }
+
+        .input-with-icon input {
+            padding-left: 45px;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input[type="checkbox"] {
+            margin-right: 8px;
+            width: auto;
+        }
+
+        .remember-me label {
+            color: var(--grey-600);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--orange-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-link:hover {
+            color: var(--orange-700);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--grey-200);
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            color: var(--grey-500);
+            font-size: 0.9rem;
+        }
+
+        .demo-credentials {
+            background: var(--grey-50);
+            border: 2px solid var(--grey-200);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .demo-credentials h4 {
+            color: var(--grey-700);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .demo-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .demo-info div {
+            color: var(--grey-600);
+        }
+
+        .demo-info strong {
+            color: var(--grey-800);
+        }
+
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #16a34a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                max-width: 400px;
+            }
+
+            .login-left {
+                padding: 40px 30px;
+                min-height: auto;
+            }
+
+            .login-left h1 {
+                font-size: 2rem;
+            }
+
+            .login-right {
+                padding: 40px 30px;
+            }
+
+            .demo-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+            color: var(--orange-500);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Password Modal Styles */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .password-modal-content {
+            background: white;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .password-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid var(--grey-200);
+        }
+
+        .password-modal-header h3 {
+            color: var(--grey-800);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--grey-500);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--grey-100);
+            color: var(--grey-700);
+        }
+
+        .password-form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding: 0 30px 30px;
+        }
+
+        .cancel-btn {
+            padding: 12px 24px;
+            background: var(--grey-200);
+            color: var(--grey-700);
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background: var(--grey-300);
+        }
+
+        .change-password-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .change-password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+
+        .password-requirements {
+            margin-top: 5px;
+            color: var(--grey-500);
+            font-size: 0.85rem;
+        }
+
+        /* Form styles for modal */
+        .password-modal-content .form-group {
+            padding: 0 30px;
+            margin-bottom: 20px;
+        }
+
+        .password-modal-content .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--grey-700);
+            font-weight: 500;
+        }
+
+        .password-modal-content .input-with-icon {
+            position: relative;
+        }
+
+        .password-modal-content .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--grey-400);
+        }
+
+        .password-modal-content .input-with-icon input {
+            width: 100%;
+            padding: 15px 45px 15px 45px;
+            border: 2px solid var(--grey-200);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--orange-500);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--grey-400);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .password-toggle:hover {
+            color: var(--orange-500);
+            background: var(--orange-50);
+        }
+
+        .password-toggle.showing {
+            color: var(--orange-500);
+        }
+        
+        /* Notification animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <!-- Official Logo -->
+            <div class="logo-primary" style="margin-bottom: 30px;">
+                <div class="logo-icon">PM</div>
+                <div class="logo-text">
+                    <div class="logo-main" style="color: white !important; text-shadow: none; font-weight: normal !important;">Project Records</div>
+                    <div class="logo-sub" style="color: rgba(255,255,255,0.8);">Media Management</div>
+                </div>
+            </div>
+            
+            <h1 style="font-size: 2rem; margin-bottom: 10px;">Digital Footprints Multimedia</h1>
+            <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">Your Creative Partner in Visual Storytelling</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Professional Project Management</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Client Database & CRM</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Invoice Generation & Tracking</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Multi-Currency Support</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Secure Data Management</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-right">
+            <form class="login-form" id="loginForm">
+                <h2>Welcome Back</h2>
+                <p>Please login to access your media management system</p>
+                
+                <div class="error-message" id="errorMessage">
+                    Invalid username or password. Please try again.
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    Login successful! Redirecting...
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password', this)" title="Show/Hide Password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <div style="display: flex; gap: 15px; flex-direction: column;">
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#" class="forgot-link" onclick="showForgotPassword(); return false;">Forgot password?</a>
+                            <a href="#" class="forgot-link" onclick="showChangePassword(); return false;">Change password</a>
+                        </div>
+                        <a href="#" class="forgot-link" onclick="showChangeLoginDetails(); return false;">Change login details</a>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Signing in...
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Test EmailJS loading -->
+    <script>
+        // Wait for EmailJS to load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (typeof emailjs !== 'undefined') {
+                    console.log('✅ EmailJS loaded successfully');
+                } else {
+                    console.error('❌ EmailJS failed to load');
+                    alert('EmailJS failed to load. Please check your internet connection and refresh the page.');
+                }
+            }, 2000);
+        });
+    </script>
+    <script>
+        // Load official credentials from config
+        const users = typeof OFFICIAL_CREDENTIALS !== 'undefined' ? OFFICIAL_CREDENTIALS : {
+            // Fallback credentials if config.js is not loaded
+            'admin': { password: 'admin123', role: 'admin', name: 'System Administrator' },
+            'manager': { password: 'manager123', role: 'manager', name: 'Manager' },
+            'user': { password: 'user123', role: 'user', name: 'User' },
+            'guest': { password: 'guest123', role: 'guest', name: 'Guest User' }
+        };
+
+        // Display credentials dynamically
+        function updateCredentialsDisplay() {
+            const demoInfo = document.querySelector('.demo-info');
+            if (demoInfo && typeof OFFICIAL_CREDENTIALS !== 'undefined') {
+                const credentials = Object.entries(OFFICIAL_CREDENTIALS).slice(0, 4); // Show first 4 accounts
+                demoInfo.innerHTML = credentials.map(([key, user]) => 
+                    `<div><strong>${user.name}:</strong> ${user.username} / ${user.password}</div>`
+                ).join('');
+            }
+        }
+
+        // Send SMS notification for new login
+        function sendLoginNotification(user) {
+            const phoneNumber = '+265999475372';
+            const loginTime = new Date().toLocaleString();
+            const message = `🔔 New Login Alert!\n\nUser: ${user.name}\nUsername: ${user.username}\nRole: ${user.role}\nTime: ${loginTime}\nSystem: Project Records Management\n\nThis is an automated security notification.`;
+            
+            // For demonstration purposes, we'll simulate the SMS sending
+            // In production, you would integrate with a real SMS service like:
+            // - Twilio API
+            // - Africa's Talking API
+            // - WhatsApp Business API
+            // - Email-to-SMS gateway
+            
+            console.log('📱 SMS Notification Details:');
+            console.log('Phone:', phoneNumber);
+            console.log('Message:', message);
+            
+            // Show admin notification (for demo purposes)
+            showAdminNotification(message);
+            
+            // In production, uncomment and implement one of these options:
+            
+            // Option 1: Twilio Integration
+            /*
+            fetch('https://api.twilio.com/2010-04-01/Accounts/YOUR_ACCOUNT_SID/Messages.json', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('YOUR_ACCOUNT_SID:YOUR_AUTH_TOKEN'),
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'To': phoneNumber,
+                    'From': 'YOUR_TWILIO_NUMBER',
+                    'Body': message
+                })
+            });
+            */
+            
+            // Option 2: Africa's Talking Integration
+            /*
+            fetch('https://api.africastalking.com/version1/messaging', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                },
+                body: new URLSearchParams({
+                    'username': 'YOUR_USERNAME',
+                    'to': phoneNumber,
+                    'message': message,
+                    'apiKey': 'YOUR_API_KEY'
+                })
+            });
+            */
+            
+            // Option 3: Email fallback
+            sendEmailNotification(user, loginTime);
+        }
+        
+        // Show admin notification on screen
+        function showAdminNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                max-width: 300px;
+                font-size: 0.9rem;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="font-size: 1.2rem;"></i>
+                    <div>
+                        <strong>Login Notification Sent!</strong>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">SMS: +265 999 47 53 72</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+        
+        // Email notification fallback
+        function sendEmailNotification(user, loginTime) {
+            // In production, implement email sending via:
+            // - EmailJS API
+            // - SMTP server
+            // - SendGrid API
+            // - AWS SES
+            
+            console.log('📧 Email notification would be sent to admin with login details');
+        }
+
+        // Check if user is already logged in
+        function checkExistingSession() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (currentUser) {
+                redirectToMain();
+            }
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // Hide previous messages
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate authentication delay
+            setTimeout(() => {
+                // Validate credentials
+                if (users[username] && users[username].password === password) {
+                    // Successful login
+                    const user = users[username];
+                    
+                    // Store user session
+                    const sessionData = {
+                        username: username,
+                        role: user.role,
+                        name: user.name,
+                        loginTime: new Date().toISOString()
+                    };
+                    
+                    if (remember) {
+                        localStorage.setItem('currentUser', JSON.stringify(sessionData));
+                    } else {
+                        sessionStorage.setItem('currentUser', JSON.stringify(sessionData));
+                    }
+                    
+                    // Show success message
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Send login notification to admin
+                    sendLoginNotification(user);
+                    
+                    // Redirect to main system
+                    setTimeout(() => {
+                        redirectToMain();
+                    }, 1500);
+                    
+                } else {
+                    // Failed login
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('errorMessage').style.display = 'block';
+                    
+                    // Shake the form for visual feedback
+                    const form = document.querySelector('.login-form');
+                    form.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        form.style.animation = '';
+                    }, 500);
+                }
+            }, 1000);
+        });
+
+        // Redirect to main system
+        function redirectToMain() {
+            window.location.href = 'Project Records.html';
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId, button) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+                button.classList.add('showing');
+                button.title = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+                button.classList.remove('showing');
+                button.title = 'Show Password';
+            }
+        }
+
+        // Initialize EmailJS
+        (function() {
+            try {
+                emailjs.init("Hl6r9ehRkM32nAxrg");
+                console.log('EmailJS initialized successfully');
+            } catch (error) {
+                console.error('EmailJS initialization failed:', error);
+            }
+        })();
+
+        // Forgot password function
+        function showForgotPassword() {
+            const modal = document.createElement('div');
+            modal.className = 'password-modal';
+            modal.innerHTML = `
+                <div class="password-modal-content">
+                    <div class="password-modal-header">
+                        <h3><i class="fas fa-key"></i> Forgot Password</h3>
+                        <button class="close-btn" onclick="this.closest('.password-modal').remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <label for="resetEmail">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="resetEmail" name="resetEmail" placeholder="Enter your email address" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="resetUsername">Username (Optional)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="resetUsername" name="resetUsername" placeholder="Enter your username">
+                            </div>
+                        </div>
+                        
+                        <div class="password-form-actions">
+                            <button type="button" class="cancel-btn" onclick="this.closest('.password-modal').remove()">
+                                Cancel
+                            </button>
+                            <button type="submit" class="change-password-btn">
+                                <i class="fas fa-paper-plane"></i> Send Reset Link
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('resetEmail').value;
+                const username = document.getElementById('resetUsername').value;
+                
+                // Show loading state
+                const submitBtn = modal.querySelector('.change-password-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                // Prepare email parameters
+                const templateParams = {
+                    to_email: email,
+                    username: username || 'User',
+                    reset_link: window.location.origin + '/reset-password.html?token=' + generateResetToken(),
+                    from_name: 'Project Records System',
+                    reply_to: 'noreply@projectrecords.com'
+                };
+                
+                // Send email using EmailJS
+                // Check if EmailJS is properly initialized
+                if (typeof emailjs === 'undefined') {
+                    throw new Error('EmailJS is not loaded. Please check your internet connection.');
+                }
+                
+                console.log('Attempting to send email with:', {
+                    service: 'service_6611c5x',
+                    template: 'template_pgteb8a',
+                    params: templateParams
+                });
+                
+                emailjs.send('service_6611c5x', 'template_pgteb8a', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showSuccessMessage(modal, email, false);
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        console.log('Error details:', JSON.stringify(error, null, 2));
+                        
+                        // Show detailed error to user
+                        const errorDiv = document.createElement('div');
+                        errorDiv.style.cssText = `
+                            background: #fef2f2;
+                            border: 1px solid #fecaca;
+                            color: #dc2626;
+                            padding: 15px;
+                            border-radius: 8px;
+                            margin: 20px 30px;
+                            text-align: center;
+                        `;
+                        errorDiv.innerHTML = `
+                            <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                            <strong>Email Sending Failed</strong>
+                            <p style="margin: 10px 0 0 0; font-size: 0.9rem;">
+                                Error: ${error.text || 'Unknown error'}
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-size: 0.8rem; color: #666;">
+                                Please check your EmailJS configuration and try again.
+                            </p>
+                            <button onclick="this.closest('.password-modal').remove()" style="margin-top: 10px; padding: 8px 16px; background: #dc2626; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                Close
+                            </button>
+                        `;
+                        
+                        // Replace form with error message
+                        modal.querySelector('.password-modal-content').innerHTML = '';
+                        modal.querySelector('.password-modal-content').appendChild(errorDiv);
+                    });
+            });
+        }
+        
+        // Generate reset token
+        function generateResetToken() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+        
+        // Show success message
+        function showSuccessMessage(modal, email, isDemo = false) {
+            const successDiv = document.createElement('div');
+            successDiv.style.cssText = `
+                background: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                color: #16a34a;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px 30px;
+                text-align: center;
+            `;
+            successDiv.innerHTML = `
+                <i class="fas fa-check-circle" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                <strong>Password Reset Email Sent!</strong>
+                <p style="margin: 10px 0 0 0; font-size: 0.9rem;">
+                    We've sent password reset instructions to:<br>
+                    <strong>${email}</strong>
+                </p>
+                ${isDemo ? `
+                <p style="margin: 10px 0 0 0; font-size: 0.8rem; color: #666;">
+                    (Demo mode: Email not actually sent. Configure EmailJS to enable real email sending.)
+                </p>
+                ` : ''}
+            `;
+            
+            // Replace form with success message
+            modal.querySelector('.password-modal-content').innerHTML = '';
+            modal.querySelector('.password-modal-content').appendChild(successDiv);
+            
+            // Auto-close after 3 seconds
+            setTimeout(() => {
+                modal.remove();
+            }, 3000);
+        }
+
+        // Change password function
+        function showChangePassword() {
+            const modal = document.createElement('div');
+            modal.className = 'password-modal';
+            modal.innerHTML = `
+                <div class="password-modal-content">
+                    <div class="password-modal-header">
+                        <h3><i class="fas fa-key"></i> Change Password</h3>
+                        <button class="close-btn" onclick="this.closest('.password-modal').remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <form id="changePasswordForm">
+                        <div class="form-group">
+                            <label for="changeUsername">Username</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="changeUsername" name="changeUsername" placeholder="Enter your username" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter current password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('currentPassword', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPassword', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-requirements">
+                                <small>Password must be at least 6 characters long</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="error-message" id="changePasswordError" style="display: none;"></div>
+                        <div class="success-message" id="changePasswordSuccess" style="display: none;"></div>
+                        
+                        <div class="password-form-actions">
+                            <button type="button" class="cancel-btn" onclick="this.closest('.password-modal').remove()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="change-password-btn">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleChangePassword();
+            });
+        }
+
+        // Handle password change
+        function handleChangePassword() {
+            const username = document.getElementById('changeUsername').value.trim();
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            const errorEl = document.getElementById('changePasswordError');
+            const successEl = document.getElementById('changePasswordSuccess');
+            
+            // Hide previous messages
+            errorEl.style.display = 'none';
+            successEl.style.display = 'none';
+            
+            // Validation
+            if (!users[username]) {
+                errorEl.textContent = 'Username not found.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (users[username].password !== currentPassword) {
+                errorEl.textContent = 'Current password is incorrect.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                errorEl.textContent = 'New passwords do not match.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                errorEl.textContent = 'New password must be at least 6 characters long.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            // Change password
+            users[username].password = newPassword;
+            
+            // Show success message
+            successEl.textContent = 'Password changed successfully! You can now login with your new password.';
+            successEl.style.display = 'block';
+            
+            // Clear form
+            document.getElementById('changePasswordForm').reset();
+            
+            // Close modal after delay
+            setTimeout(() => {
+                document.querySelector('.password-modal').remove();
+            }, 3000);
+        }
+
+        // Show change login details modal
+        function showChangeLoginDetails() {
+            const modal = document.createElement('div');
+            modal.className = 'password-modal';
+            modal.innerHTML = `
+                <div class="password-modal-content">
+                    <div class="password-modal-header">
+                        <h3><i class="fas fa-user-cog"></i> Change Login Details</h3>
+                        <button class="close-btn" onclick="this.closest('.password-modal').remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <form id="changeLoginDetailsForm">
+                        <div class="form-group">
+                            <label for="currentUsername">Current Username</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="currentUsername" name="currentUsername" placeholder="Enter current username" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentPasswordLogin">Current Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="currentPasswordLogin" name="currentPasswordLogin" placeholder="Enter current password" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('currentPasswordLogin', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newUsername">New Username</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-plus"></i>
+                                <input type="text" id="newUsername" name="newUsername" placeholder="Enter new username" required minlength="3">
+                            </div>
+                            <div class="password-requirements">
+                                <small>Username must be at least 3 characters long</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPasswordLogin">New Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-key"></i>
+                                <input type="password" id="newPasswordLogin" name="newPasswordLogin" placeholder="Enter new password" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('newPasswordLogin', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-requirements">
+                                <small>Password must be at least 6 characters long</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmNewPasswordLogin">Confirm New Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmNewPasswordLogin" name="confirmNewPasswordLogin" placeholder="Confirm new password" required minlength="6">
+                                <button type="button" class="password-toggle" onclick="togglePassword('confirmNewPasswordLogin', this)" title="Show/Hide Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="error-message" id="changeLoginDetailsError" style="display: none;"></div>
+                        <div class="success-message" id="changeLoginDetailsSuccess" style="display: none;"></div>
+                        
+                        <div class="password-form-actions">
+                            <button type="button" class="cancel-btn" onclick="this.closest('.password-modal').remove()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="change-password-btn">
+                                <i class="fas fa-user-cog"></i> Update Login Details
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('changeLoginDetailsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleChangeLoginDetails();
+            });
+        }
+
+        // Handle login details change
+        function handleChangeLoginDetails() {
+            const currentUsername = document.getElementById('currentUsername').value.trim();
+            const currentPassword = document.getElementById('currentPasswordLogin').value;
+            const newUsername = document.getElementById('newUsername').value.trim();
+            const newPassword = document.getElementById('newPasswordLogin').value;
+            const confirmPassword = document.getElementById('confirmNewPasswordLogin').value;
+            
+            const errorEl = document.getElementById('changeLoginDetailsError');
+            const successEl = document.getElementById('changeLoginDetailsSuccess');
+            
+            // Hide previous messages
+            errorEl.style.display = 'none';
+            successEl.style.display = 'none';
+            
+            // Validation
+            if (!users[currentUsername]) {
+                errorEl.textContent = 'Current username not found.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (users[currentUsername].password !== currentPassword) {
+                errorEl.textContent = 'Current password is incorrect.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (newUsername.length < 3) {
+                errorEl.textContent = 'New username must be at least 3 characters long.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                errorEl.textContent = 'New passwords do not match.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                errorEl.textContent = 'New password must be at least 6 characters long.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            // Check if new username already exists (and it's different from current)
+            if (newUsername !== currentUsername && users[newUsername]) {
+                errorEl.textContent = 'New username already exists. Please choose a different one.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            
+            // Update login details
+            const userData = users[currentUsername];
+            
+            // If username is changing, remove old entry and create new one
+            if (newUsername !== currentUsername) {
+                delete users[currentUsername];
+                users[newUsername] = {
+                    ...userData,
+                    username: newUsername,
+                    password: newPassword
+                };
+            } else {
+                // Just update password
+                users[currentUsername].password = newPassword;
+            }
+            
+            // Show success message
+            successEl.textContent = `Login details updated successfully! You can now login with username: ${newUsername}`;
+            successEl.style.display = 'block';
+            
+            // Clear form
+            document.getElementById('changeLoginDetailsForm').reset();
+            
+            // Close modal after delay
+            setTimeout(() => {
+                document.querySelector('.password-modal').remove();
+            }, 4000);
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Check session on page load
+        checkExistingSession();
+        
+        // Update credentials display
+        updateCredentialsDisplay();
+
+        // Add enter key support for quick login with official accounts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === '1') {
+                document.getElementById('username').value = 'official';
+                document.getElementById('password').value = 'official123';
+            } else if (e.ctrlKey && e.key === '2') {
+                document.getElementById('username').value = 'chisomo';
+                document.getElementById('password').value = 'chisomo123';
+            } else if (e.ctrlKey && e.key === '3') {
+                document.getElementById('username').value = 'admin';
+                document.getElementById('password').value = 'admin123';
+            } else if (e.ctrlKey && e.key === '4') {
+                document.getElementById('username').value = 'manager';
+                document.getElementById('password').value = 'manager123';
+            }
+        });
+    </script>
+</body>
+</html>

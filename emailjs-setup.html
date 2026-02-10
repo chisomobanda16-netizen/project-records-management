@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Setup Guide</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ea580c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: #f9fafb;
+            border-left: 4px solid #f97316;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .step h3 {
+            color: #ea580c;
+            margin-top: 0;
+        }
+        .code {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #16a34a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 EmailJS Setup Guide</h1>
+        
+        <div class="success">
+            <strong>✅ Great!</strong> You've created your EmailJS account. Now follow these steps to get your credentials and integrate them.
+        </div>
+
+        <div class="step">
+            <h3>Step 1: Get Your Public Key</h3>
+            <ol>
+                <li>Log in to your EmailJS dashboard</li>
+                <li>Go to <span class="highlight">Account → General</span></li>
+                <li>Copy your <span class="highlight">Public Key</span></li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Create Email Service</h3>
+            <ol>
+                <li>Go to <span class="highlight">Email Services</span></li>
+                <li>Click <span class="highlight">Add New Service</span></li>
+                <li>Choose your email provider (Gmail, Outlook, etc.)</li>
+                <li>Connect your email account</li>
+                <li>Copy the <span class="highlight">Service ID</span></li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Create Email Template</h3>
+            <ol>
+                <li>Go to <span class="highlight">Email Templates</span></li>
+                <li>Click <span class="highlight">Create New Template</span></li>
+                <li>Use this template structure:</li>
+            </ol>
+            <div class="code">
+Subject: Password Reset Request - Project Records System
+
+Hello {{username}},
+
+You requested a password reset for your Project Records account.
+
+Click the link below to reset your password:
+{{reset_link}}
+
+This link will expire in 24 hours.
+
+If you didn't request this, please ignore this email.
+
+Best regards,
+{{from_name}}
+            </div>
+            <p><strong>Template Variables to Include:</strong></p>
+            <ul>
+                <li><code>{{username}}</code> - User's username</li>
+                <li><code>{{to_email}}</code> - Recipient email</li>
+                <li><code>{{reset_link}}</code> - Password reset link</li>
+                <li><code>{{from_name}}</code> - Your system name</li>
+            </ul>
+            <p>After creating, copy the <span class="highlight">Template ID</span></p>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Update Your Code</h3>
+            <p>Now let's update your login.html file with your actual credentials:</p>
+            <button onclick="updateCredentials()">Update Credentials Now</button>
+            <div id="credentialsForm" style="display: none; margin-top: 20px;">
+                <div class="form-group">
+                    <label>Public Key:</label>
+                    <input type="text" id="publicKey" placeholder="Enter your EmailJS public key" style="width: 100%; padding: 10px; margin: 5px 0;">
+                </div>
+                <div class="form-group">
+                    <label>Service ID:</label>
+                    <input type="text" id="serviceId" placeholder="Enter your service ID" style="width: 100%; padding: 10px; margin: 5px 0;">
+                </div>
+                <div class="form-group">
+                    <label>Template ID:</label>
+                    <input type="text" id="templateId" placeholder="Enter your template ID" style="width: 100%; padding: 10px; margin: 5px 0;">
+                </div>
+                <button onclick="saveCredentials()">Save to login.html</button>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 5: Test Your Setup</h3>
+            <ol>
+                <li>Open your login.html page</li>
+                <li>Click "Forgot password?"</li>
+                <li>Enter your email address</li>
+                <li>Click "Send Reset Link"</li>
+                <li>Check your email for the reset instructions</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function updateCredentials() {
+            document.getElementById('credentialsForm').style.display = 'block';
+        }
+
+        function saveCredentials() {
+            const publicKey = document.getElementById('publicKey').value;
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+
+            if (!publicKey || !serviceId || !templateId) {
+                alert('Please fill in all three fields');
+                return;
+            }
+
+            // Create the updated JavaScript code
+            const updatedCode = `
+// Initialize EmailJS
+(function() {
+    emailjs.init("${publicKey}");
+})();
+
+// In the forgot password function, update this line:
+emailjs.send('${serviceId}', '${templateId}', templateParams)
+            `;
+
+            // Show the code to copy
+            alert('Copy this code and replace the EmailJS section in your login.html:\n\n' + updatedCode);
+            
+            // Also create a downloadable file
+            const blob = new Blob([updatedCode], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'emailjs-credentials.js';
+            a.click();
+        }
+    </script>
+</body>
+</html>

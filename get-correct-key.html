@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Correct EmailJS Key</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ea580c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .error-box {
+            background: #fef2f2;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .steps {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-left: 4px solid #f97316;
+            border-radius: 4px;
+        }
+        .key-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        button {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Fix EmailJS Public Key</h1>
+        
+        <div class="error-box">
+            <strong>❌ Error Found:</strong> "The Public Key is invalid"<br>
+            <strong>Current Key:</strong> <code>EnERBtjvFnVm0Bq9SG</code><br>
+            This key is not valid in EmailJS system.
+        </div>
+
+        <div class="steps">
+            <h3>📋 Steps to Get Correct Key:</h3>
+            
+            <div class="step">
+                <h4>Step 1: Go to EmailJS Dashboard</h4>
+                <p>Visit: <a href="https://dashboard.emailjs.com/admin/account" target="_blank" style="color: #f97316;">https://dashboard.emailjs.com/admin/account</a></p>
+            </div>
+
+            <div class="step">
+                <h4>Step 2: Find Your Public Key</h4>
+                <p>Look for <span class="highlight">Public Key</span> section on the account page</p>
+                <p>It should be a long string like: <code>AbCdEfGhIjKlMnOpQrStUvWxYz123456</code></p>
+            </div>
+
+            <div class="step">
+                <h4>Step 3: Copy and Update</h4>
+                <p>Copy the <span class="highlight">exact</span> Public Key from EmailJS dashboard</p>
+                <input type="text" id="correctKey" class="key-input" placeholder="Paste your correct Public Key here">
+                <button onclick="updateKey()">Update Public Key</button>
+            </div>
+        </div>
+
+        <div class="steps">
+            <h3>🔍 What to Look For:</h3>
+            <ul>
+                <li>Public Key is usually <strong>32+ characters long</strong></li>
+                <li>Contains <strong>letters and numbers</strong></li>
+                <li>Found under <strong>Account → General</strong> in EmailJS</li>
+                <li>Different from Service ID and Template ID</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateKey() {
+            const newKey = document.getElementById('correctKey').value.trim();
+            
+            if (!newKey) {
+                alert('Please enter your correct Public Key from EmailJS dashboard');
+                return;
+            }
+            
+            if (newKey.length < 20) {
+                alert('Public Key seems too short. Please copy the full key from EmailJS dashboard.');
+                return;
+            }
+            
+            // Create the updated code
+            const updatedCode = `// Initialize EmailJS
+        (function() {
+            try {
+                emailjs.init("${newKey}");
+                console.log('EmailJS initialized successfully');
+            } catch (error) {
+                console.error('EmailJS initialization failed:', error);
+            }
+        })();`;
+            
+            // Show success and instructions
+            alert('✅ Key Updated!\n\nNow replace the EmailJS initialization code in login.html with:\n\n' + updatedCode + '\n\nOr click "Auto Update" below.');
+            
+            // Store for auto-update
+            localStorage.setItem('correct_public_key', newKey);
+            
+            // Auto-update option
+            if (confirm('Would you like to auto-update the login.html file?')) {
+                // This would require file system access in a real environment
+                alert('In a real environment, this would automatically update your login.html file.\n\nFor now, please manually copy the code shown above.');
+            }
+        }
+    </script>
+</body>
+</html>

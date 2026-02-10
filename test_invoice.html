@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice System Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles-chisomo.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background: var(--grey-50);
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: var(--orange-500);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: var(--orange-600);
+        }
+        #invoiceTest {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--grey-50);
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧾 Invoice System Test</h1>
+        <p>This page tests the invoicing system functionality.</p>
+        
+        <button class="test-button" onclick="testInvoiceSystem()">
+            <i class="fas fa-file-invoice"></i> Test Invoice System
+        </button>
+        
+        <button class="test-button" onclick="alert('JavaScript is working!')">
+            <i class="fas fa-check"></i> Test JavaScript
+        </button>
+        
+        <div id="invoiceTest">
+            <h3>Invoice System Loaded Successfully!</h3>
+            <p>The invoicing system is working properly.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="chisomo-script.js"></script>
+    <script>
+        function testInvoiceSystem() {
+            console.log('Test button clicked!');
+            
+            try {
+                // Create a simple test manager
+                const testManager = new ProjectManager('digitalFootprints');
+                
+                // Test the invoice system
+                testManager.showInvoiceSystem();
+                
+                // Show success message
+                document.getElementById('invoiceTest').style.display = 'block';
+                
+                console.log('Invoice system test successful!');
+            } catch (error) {
+                console.error('Test failed:', error);
+                alert('Test failed: ' + error.message);
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test page loaded');
+        });
+    </script>
+</body>
+</html>

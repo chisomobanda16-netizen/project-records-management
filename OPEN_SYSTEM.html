@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management System - Launcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .launcher-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        
+        .access-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .access-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .access-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .access-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .access-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        .server-status {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: blink 1s infinite;
+        }
+        
+        .status-online {
+            background: #28a745;
+        }
+        
+        .status-offline {
+            background: #dc3545;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .file-path {
+            background: #e3f2fd;
+            border: 1px solid #0984e3;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-container">
+        <div class="logo">📊</div>
+        <h1>Project Management System</h1>
+        <p class="subtitle">Professional Media Management with Analytics Dashboard</p>
+        
+        <div class="server-status">
+            <h3>🖥️ Server Status</h3>
+            <p><span class="status-indicator status-offline"></span> Server Offline</p>
+            <p>Start the server to access your system</p>
+        </div>
+        
+        <div class="access-methods">
+            <a href="file:///d:/Skill honing/Portfolio Website/Projects Records/chisomo-system.html" class="access-card">
+                <div class="access-icon">📂</div>
+                <div class="access-title">Direct File Access</div>
+                <div class="access-desc">Open system directly from file</div>
+            </a>
+            
+            <a href="http://localhost:8000" class="access-card" target="_blank">
+                <div class="access-icon">🌐</div>
+                <div class="access-title">Local Server</div>
+                <div class="access-desc">Access via web browser</div>
+            </a>
+            
+            <a href="#" onclick="startServer()" class="access-card">
+                <div class="access-icon">🚀</div>
+                <div class="access-title">Start Server</div>
+                <div class="access-desc">Launch local server</div>
+            </a>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Quick Start Instructions</h3>
+            <ol>
+                <li><strong>Option 1:</strong> Double-click "Direct File Access" to open system directly</li>
+                <li><strong>Option 2:</strong> Start server and click "Local Server" for web access</li>
+                <li><strong>Option 3:</strong> Use batch files: <code>start-server.bat</code> or <code>start-node-server.bat</code></li>
+                <li><strong>File Location:</strong></li>
+            </ol>
+            <div class="file-path">
+                d:/Skill honing/Portfolio Website/Projects Records/chisomo-system.html
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function startServer() {
+            alert('To start the server:\n\n1. Double-click start-server.bat (Python)\n2. Double-click start-node-server.bat (Node.js)\n3. Wait for "Server running" message\n4. Click "Local Server" button above');
+        }
+        
+        // Check if server is online
+        fetch('http://localhost:8000')
+            .then(() => {
+                document.querySelector('.status-indicator').className = 'status-indicator status-online';
+                document.querySelector('.server-status p').innerHTML = '<span class="status-indicator status-online"></span> Server Online';
+            })
+            .catch(() => {
+                document.querySelector('.status-indicator').className = 'status-indicator status-offline';
+                document.querySelector('.server-status p').innerHTML = '<span class="status-indicator status-offline"></span> Server Offline';
+            });
+        
+        // Check server status every 5 seconds
+        setInterval(() => {
+            fetch('http://localhost:8000')
+                .then(() => {
+                    document.querySelector('.status-indicator').className = 'status-indicator status-online';
+                    document.querySelector('.server-status p').innerHTML = '<span class="status-indicator status-online"></span> Server Online';
+                })
+                .catch(() => {
+                    // Keep offline status
+                });
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Logo Design - Professional Media Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Orange and Grey Color Palette */
+            --orange-50: #fff7ed;
+            --orange-100: #ffedd5;
+            --orange-200: #fed7aa;
+            --orange-300: #fdba74;
+            --orange-400: #fb923c;
+            --orange-500: #f97316;
+            --orange-600: #ea580c;
+            --orange-700: #c2410c;
+            --orange-800: #9a3412;
+            --orange-900: #7c2d12;
+            
+            /* Grey Scale */
+            --grey-50: #f9fafb;
+            --grey-100: #f3f4f6;
+            --grey-200: #e5e7eb;
+            --grey-300: #d1d5db;
+            --grey-400: #9ca3af;
+            --grey-500: #6b7280;
+            --grey-600: #4b5563;
+            --grey-700: #374151;
+            --grey-800: #1f2937;
+            --grey-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--grey-50), var(--grey-100));
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--orange-600);
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: var(--grey-600);
+            font-weight: 400;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--grey-800);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .logo-display {
+            background: var(--grey-50);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+
+        /* Primary Logo Styles */
+        .primary-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--orange-400), var(--orange-600), var(--orange-400));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--grey-800);
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--orange-600);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Minimal Logo */
+        .minimal-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .minimal-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--grey-800);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange-500);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .minimal-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--grey-800);
+            letter-spacing: -0.3px;
+        }
+
+        /* Icon Only */
+        .icon-only {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-700));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-only::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--orange-400), var(--orange-700), var(--orange-400));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        /* Monogram Logo */
+        .monogram-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--grey-800), var(--grey-900));
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange-500);
+            font-size: 3rem;
+            font-weight: 900;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .monogram-logo::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--orange-500), var(--grey-700), var(--orange-500));
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Horizontal Logo */
+        .horizontal-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .horizontal-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+        }
+
+        .horizontal-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--grey-800), var(--orange-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        /* Badge Logo */
+        .badge-logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-700));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge-logo::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, var(--orange-400), var(--orange-800), var(--orange-400));
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        .badge-icon {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .badge-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-details {
+            background: var(--grey-50);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--grey-200);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--grey-600);
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--grey-800);
+            font-size: 0.9rem;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .usage-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .usage-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--grey-800);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .usage-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--grey-50);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .usage-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .usage-icon {
+            font-size: 3rem;
+            color: var(--orange-500);
+            margin-bottom: 15px;
+        }
+
+        .usage-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--grey-800);
+            margin-bottom: 10px;
+        }
+
+        .usage-desc {
+            font-size: 0.9rem;
+            color: var(--grey-600);
+            line-height: 1.5;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, var(--orange-500), var(--orange-600));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .download-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .download-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--orange-600);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .usage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Official Logo Design</h1>
+            <p>Professional Media Management System - Complete Brand Identity</p>
+        </header>
+
+        <div class="logo-grid">
+            <!-- Primary Logo -->
+            <div class="logo-card">
+                <h3>Primary Logo</h3>
+                <div class="logo-display">
+                    <div class="primary-logo">
+                        <div class="logo-icon">PM</div>
+                        <div class="logo-text">
+                            <div class="logo-main">Project Records</div>
+                            <div class="logo-sub">Media Management</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Primary Brand Logo</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Main Applications</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                            <div class="color-swatch" style="background: #1f2937;"></div>
+                            <div class="color-swatch" style="background: #ffffff;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minimal Logo -->
+            <div class="logo-card">
+                <h3>Minimal Logo</h3>
+                <div class="logo-display">
+                    <div class="minimal-logo">
+                        <div class="minimal-icon">PM</div>
+                        <div class="minimal-text">Project Records</div>
+                    </div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Minimal Design</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Small Spaces</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #1f2937;"></div>
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Only -->
+            <div class="logo-card">
+                <h3>Icon Only</h3>
+                <div class="logo-display">
+                    <div class="icon-only">PM</div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Brand Icon</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Favicons, Apps</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                            <div class="color-swatch" style="background: #ffffff;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monogram Logo -->
+            <div class="logo-card">
+                <h3>Monogram Logo</h3>
+                <div class="logo-display">
+                    <div class="monogram-logo">PM</div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Monogram</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Profile Pictures</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #1f2937;"></div>
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horizontal Logo -->
+            <div class="logo-card">
+                <h3>Horizontal Logo</h3>
+                <div class="logo-display">
+                    <div class="horizontal-logo">
+                        <div class="horizontal-icon">PM</div>
+                        <div class="horizontal-text">Project Records</div>
+                    </div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Horizontal Layout</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Headers, Banners</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                            <div class="color-swatch" style="background: #1f2937;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badge Logo -->
+            <div class="logo-card">
+                <h3>Badge Logo</h3>
+                <div class="logo-display">
+                    <div class="badge-logo">
+                        <div class="badge-icon">PM</div>
+                        <div class="badge-text">Records</div>
+                    </div>
+                </div>
+                <div class="logo-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">Circular Badge</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Usage:</span>
+                        <span class="detail-value">Social Media, Stickers</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Colors:</span>
+                        <div class="color-palette">
+                            <div class="color-swatch" style="background: #f97316;"></div>
+                            <div class="color-swatch" style="background: #ffffff;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Guidelines -->
+        <div class="usage-section">
+            <h2>Usage Guidelines</h2>
+            <div class="usage-grid">
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="usage-title">Web Applications</div>
+                    <div class="usage-desc">Use primary logo for main header, minimal logo for navigation, icon for favicon</div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="usage-title">Mobile Apps</div>
+                    <div class="usage-desc">Icon for app icons, minimal logo for splash screens, monogram for profiles</div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="usage-title">Documents</div>
+                    <div class="usage-desc">Primary logo for headers, horizontal for footers, minimal for watermarks</div>
+                </div>
+                <div class="usage-item">
+                    <div class="usage-icon"><i class="fas fa-share-alt"></i></div>
+                    <div class="usage-title">Social Media</div>
+                    <div class="usage-desc">Badge for profile pictures, icon for thumbnails, primary for posts</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2>Download Logo Assets</h2>
+            <p>Get all logo variations in multiple formats for your projects</p>
+            <div class="download-buttons">
+                <button class="download-btn" onclick="downloadSVG()">
+                    <i class="fas fa-download"></i> SVG Files
+                </button>
+                <button class="download-btn" onclick="downloadPNG()">
+                    <i class="fas fa-download"></i> PNG Files
+                </button>
+                <button class="download-btn" onclick="downloadPDF()">
+                    <i class="fas fa-download"></i> PDF Files
+                </button>
+                <button class="download-btn" onclick="downloadFavicon()">
+                    <i class="fas fa-download"></i> Favicon Pack
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadSVG() {
+            alert('SVG download would contain:\n\n• Primary Logo (SVG)\n• Minimal Logo (SVG)\n• Icon Only (SVG)\n• Monogram (SVG)\n• Horizontal Logo (SVG)\n• Badge Logo (SVG)\n\nAll files are scalable vector graphics perfect for web and print.');
+        }
+
+        function downloadPNG() {
+            alert('PNG download would contain:\n\n• Primary Logo (512x512, 256x256, 128x128)\n• Minimal Logo (512x512, 256x256, 128x128)\n• Icon Only (512x512, 256x256, 128x128)\n• Monogram (512x512, 256x256, 128x128)\n• Horizontal Logo (800x200, 600x150)\n• Badge Logo (512x512, 256x256, 128x128)\n\nAll files have transparent backgrounds.');
+        }
+
+        function downloadPDF() {
+            alert('PDF download would contain:\n\n• Brand Guidelines PDF\n• Logo Usage Examples\n• Color Specifications\n• Typography Guidelines\n• Application Examples\n\nProfessional print-ready PDF files.');
+        }
+
+        function downloadFavicon() {
+            alert('Favicon pack would contain:\n\n• favicon.ico (16x16, 32x32, 48x48)\n• apple-touch-icon.png (180x180)\n• icon-192.png (192x192)\n• icon-512.png (512x512)\n• manifest.json for PWA\n\nAll files optimized for web browsers and mobile devices.');
+        }
+    </script>
+</body>
+</html>

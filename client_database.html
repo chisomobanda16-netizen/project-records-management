@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Database - Professional Media Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles-chisomo.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .client-main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .business-selection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .business-selection-container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .business-selection h1 {
+            color: white;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .business-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .business-option {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .business-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: var(--orange-500);
+        }
+        
+        .business-option.active {
+            border-color: var(--orange-500);
+            background: linear-gradient(135deg, rgba(255,152,0,0.1), rgba(255,87,34,0.1));
+        }
+        
+        .business-icon {
+            font-size: 3rem;
+            color: var(--orange-500);
+            margin-bottom: 20px;
+        }
+        
+        .business-option h3 {
+            color: var(--grey-800);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .business-option p {
+            color: var(--grey-600);
+            margin-bottom: 20px;
+        }
+        
+        .client-database-container {
+            padding: 40px;
+        }
+        
+        .client-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--grey-200);
+        }
+        
+        .client-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .client-analytics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .analytics-card {
+            background: var(--grey-50);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--grey-200);
+        }
+        
+        .analytics-card h4 {
+            color: var(--grey-600);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .analytics-card p {
+            color: var(--orange-600);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .client-search-section {
+            background: var(--grey-50);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .search-filters {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .client-table-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .client-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .client-table th {
+            background: var(--orange-500);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .client-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--grey-200);
+        }
+        
+        .client-table tr:hover {
+            background: var(--grey-50);
+        }
+        
+        .client-email {
+            color: var(--orange-600);
+            text-decoration: none;
+        }
+        
+        .client-email:hover {
+            text-decoration: underline;
+        }
+        
+        .client-phone {
+            color: var(--grey-700);
+            text-decoration: none;
+        }
+        
+        .client-type, .client-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .client-type.individual { background: #fff3e0; color: #f57c00; }
+        .client-type.company { background: #f5f5f5; color: #616161; }
+        .client-type.organization { background: #f5f5f5; color: #616161; }
+        
+        .client-status.active { background: #f5f5f5; color: #616161; }
+        .client-status.inactive { background: #ffebee; color: #c62828; }
+        .client-status.vip { background: #fff3e0; color: #f57c00; }
+        
+        .client-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .client-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .client-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--grey-700);
+        }
+        
+        .client-form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="business-selection" id="businessSelection">
+        <div class="business-selection-container">
+            <!-- Back Button -->
+            <div style="text-align: left; margin-bottom: 20px;">
+                <button onclick="window.location.href='Project Records.html'" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                    <i class="fas fa-arrow-left"></i> Back to Project Records
+                </button>
+            </div>
+            
+            <!-- Official Logo -->
+            <div class="logo-primary" style="margin-bottom: 20px;">
+                <div class="logo-icon">PM</div>
+                <div class="logo-text">
+                    <div class="logo-main" style="color: white;">Project Records</div>
+                    <div class="logo-sub" style="color: rgba(255,255,255,0.8);">Client Database</div>
+                </div>
+            </div>
+            
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;"><i class="fas fa-address-book"></i> Client Database</h1>
+            <p style="color: white; margin-bottom: 40px; font-size: 1.2rem;">Choose your business type to continue</p>
+            
+            <div class="business-options">
+                <div class="business-option" onclick="selectBusiness('digitalFootprints')">
+                    <div class="business-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Digital Footprints</h3>
+                    <p>Multimedia Clients - Photography, Video, Web Design</p>
+                    <ul style="text-align: left; color: var(--grey-600); font-size: 0.9rem;">
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Photography Clients</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Video Production</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Web Design Projects</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Marketing Services</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Brand Development</li>
+                    </ul>
+                </div>
+                
+                <div class="business-option" onclick="selectBusiness('filmFixer')">
+                    <div class="business-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Film Fixer</h3>
+                    <p>Film Production Clients - Location & Production Services</p>
+                    <ul style="text-align: left; color: var(--grey-600); font-size: 0.9rem;">
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Film Production</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Location Scouting</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Production Support</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Equipment Rental</li>
+                        <li><i class="fas fa-check" style="color: #9e9e9e; margin-right: 8px;"></i>Crew Coordination</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="color: white; margin-bottom: 20px;">Why Choose Our Client Database?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div style="color: white;">
+                        <i class="fas fa-check-circle" style="color: #9e9e9e; margin-right: 10px;"></i>
+                        Complete Client Profiles
+                    </div>
+                    <div style="color: white;">
+                        <i class="fas fa-check-circle" style="color: #9e9e9e; margin-right: 10px;"></i>
+                        Project Tracking
+                    </div>
+                    <div style="color: white;">
+                        <i class="fas fa-check-circle" style="color: #9e9e9e; margin-right: 10px;"></i>
+                        Revenue Analytics
+                    </div>
+                    <div style="color: white;">
+                        <i class="fas fa-check-circle" style="color: #9e9e9e; margin-right: 10px;"></i>
+                        Advanced Search
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="client-main-container" id="clientMainContainer" style="display: none;">
+        <div id="clientContent">
+            <!-- Client database will be loaded here -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        // Check login before proceeding
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+        
+        function selectBusiness(businessType) {
+            // Update UI
+            document.querySelectorAll('.business-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.closest('.business-option').classList.add('active');
+            
+            // Initialize client manager
+            window.currentBusinessType = businessType;
+            
+            // Show loading message
+            const content = document.getElementById('clientContent');
+            content.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--orange-500);"></i><p style="margin-top: 20px;">Loading client database...</p></div>';
+            
+            // Hide business selection and show main container
+            document.getElementById('businessSelection').style.display = 'none';
+            document.getElementById('clientMainContainer').style.display = 'block';
+            
+            // Load client database directly
+            setTimeout(() => {
+                loadClientDatabase(businessType);
+            }, 500);
+        }
+        
+        function loadClientDatabase(businessType) {
+            const content = document.getElementById('clientContent');
+            const businessName = businessType === 'digitalFootprints' ? 'Digital Footprints Multimedia' : 'Film Fixer Consultation';
+            
+            content.innerHTML = `
+                <div class="client-database-container" style="display: block;">
+                    <div class="client-header" style="background: white; border-bottom: 2px solid var(--grey-200); margin-bottom: 20px;">
+                        <h2 style="color: var(--grey-800);"><i class="fas fa-address-book"></i> Client Database - ${businessName}</h2>
+                        <div class="client-controls">
+                            <button class="btn btn-secondary" onclick="window.location.href='Project Records.html'">
+                                <i class="fas fa-home"></i> Back to Main Page
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="location.reload()">
+                                <i class="fas fa-sync"></i> Business Selection
+                            </button>
+                            <button class="btn btn-primary" onclick="addNewClient()">
+                                <i class="fas fa-user-plus"></i> Add Client
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="client-analytics">
+                        <div class="analytics-card">
+                            <h4>Total Clients</h4>
+                            <p id="totalClients">0</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Active Clients</h4>
+                            <p id="activeClients">0</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>VIP Clients</h4>
+                            <p id="vipClients">0</p>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>New This Month</h4>
+                            <p id="newClients">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="client-search-section">
+                        <div class="search-filters">
+                            <input type="text" id="clientSearch" class="form-control" placeholder="Search clients..." onkeyup="filterClients()">
+                            <select id="clientTypeFilter" class="form-control" onchange="filterClients()">
+                                <option value="">All Types</option>
+                                <option value="individual">Individual</option>
+                                <option value="company">Company</option>
+                                <option value="organization">Organization</option>
+                            </select>
+                            <select id="clientStatusFilter" class="form-control" onchange="filterClients()">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="vip">VIP</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="client-table-container">
+                        <table class="client-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Company</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Projects</th>
+                                    <th>Revenue</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientTableBody">
+                                <tr>
+                                    <td colspan="9" style="text-align: center; padding: 40px;">
+                                        <i class="fas fa-users" style="font-size: 3rem; color: var(--grey-400); margin-bottom: 15px;"></i>
+                                        <p>No clients yet. Add your first client!</p>
+                                        <button class="btn btn-primary" onclick="addNewClient()">
+                                            <i class="fas fa-user-plus"></i> Add First Client
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            // Store business type globally for use by functions
+            window.currentBusinessType = businessType;
+            
+            // Load and display clients
+            updateClientAnalytics();
+            renderClients();
+        }
+        
+        function updateClientAnalytics() {
+            const clients = getClients();
+            const totalClients = clients.length;
+            const activeClients = clients.filter(c => c.status === 'active').length;
+            const vipClients = clients.filter(c => c.status === 'vip').length;
+            
+            // New clients this month
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            const newClients = clients.filter(c => {
+                const createdDate = new Date(c.createdAt);
+                return createdDate.getMonth() === currentMonth && createdDate.getFullYear() === currentYear;
+            }).length;
+            
+            // Update analytics elements if they exist
+            const totalClientsEl = document.getElementById('totalClients');
+            const activeClientsEl = document.getElementById('activeClients');
+            const vipClientsEl = document.getElementById('vipClients');
+            const newClientsEl = document.getElementById('newClients');
+            
+            if (totalClientsEl) totalClientsEl.textContent = totalClients;
+            if (activeClientsEl) activeClientsEl.textContent = activeClients;
+            if (vipClientsEl) vipClientsEl.textContent = vipClients;
+            if (newClientsEl) newClientsEl.textContent = newClients;
+        }
+        
+        function addNewClient() {
+            // Create modal for adding new client
+            const modal = document.createElement('div');
+            modal.className = 'client-modal';
+            modal.innerHTML = `
+                <div class="client-modal-content">
+                    <div class="client-modal-header">
+                        <h3><i class="fas fa-user-plus"></i> Add New Client</h3>
+                        <button class="btn btn-secondary" onclick="this.closest('.client-modal').remove()">Cancel</button>
+                    </div>
+                    <form id="clientForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="clientFirstName">First Name *</label>
+                                <input type="text" id="clientFirstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientLastName">Last Name *</label>
+                                <input type="text" id="clientLastName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientCompany">Company</label>
+                                <input type="text" id="clientCompany" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientEmail">Email *</label>
+                                <input type="email" id="clientEmail" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientPhone">Phone</label>
+                                <input type="tel" id="clientPhone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="clientType">Type *</label>
+                                <select id="clientType" class="form-control" required>
+                                    <option value="">Select type...</option>
+                                    <option value="individual">Individual</option>
+                                    <option value="company">Company</option>
+                                    <option value="organization">Organization</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientStatus">Status *</label>
+                                <select id="clientStatus" class="form-control" required>
+                                    <option value="">Select status...</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="vip">VIP</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="clientNotes">Notes</label>
+                                <textarea id="clientNotes" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="client-form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="this.closest('.client-modal').remove()">Cancel</button>
+                            <button type="button" class="btn btn-primary" onclick="saveClient()">Save Client</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function saveClient() {
+            const client = {
+                id: Date.now().toString(),
+                firstName: document.getElementById('clientFirstName').value,
+                lastName: document.getElementById('clientLastName').value,
+                company: document.getElementById('clientCompany').value,
+                email: document.getElementById('clientEmail').value,
+                phone: document.getElementById('clientPhone').value,
+                type: document.getElementById('clientType').value,
+                status: document.getElementById('clientStatus').value,
+                notes: document.getElementById('clientNotes').value,
+                projects: 0,
+                totalRevenue: 0,
+                createdAt: new Date().toISOString(),
+                lastContact: new Date().toISOString()
+            };
+            
+            // Validate
+            if (!client.firstName || !client.lastName || !client.email || !client.type || !client.status) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Save to local storage
+            const clients = getClients();
+            clients.push(client);
+            localStorage.setItem(`${window.currentBusinessType}Clients`, JSON.stringify(clients));
+            
+            // Close modal and refresh
+            document.querySelector('.client-modal').remove();
+            renderClients();
+            updateClientAnalytics();
+            
+            alert('Client added successfully!');
+        }
+        
+        function getClients() {
+            const clients = localStorage.getItem(`${window.currentBusinessType}Clients`);
+            return clients ? JSON.parse(clients) : [];
+        }
+        
+        function renderClients() {
+            const clients = getClients();
+            const tbody = document.getElementById('clientTableBody');
+            
+            if (clients.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 40px;">
+                            <i class="fas fa-users" style="font-size: 3rem; color: var(--grey-400); margin-bottom: 15px;"></i>
+                            <p>No clients yet. Add your first client!</p>
+                            <button class="btn btn-primary" onclick="addNewClient()">
+                                <i class="fas fa-user-plus"></i> Add First Client
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = clients.map(client => `
+                <tr class="client-row" data-id="${client.id}">
+                    <td><strong>${client.firstName} ${client.lastName}</strong></td>
+                    <td>${client.company || '-'}</td>
+                    <td><a href="mailto:${client.email}" class="client-email">${client.email}</a></td>
+                    <td><a href="tel:${client.phone}" class="client-phone">${client.phone || '-'}</a></td>
+                    <td><span class="client-type ${client.type}">${client.type}</span></td>
+                    <td><span class="client-status ${client.status}">${client.status}</span></td>
+                    <td>${client.projects}</td>
+                    <td>$${client.totalRevenue.toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" onclick="deleteClient('${client.id}')" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function deleteClient(clientId) {
+            if (!confirm('Are you sure you want to delete this client?')) {
+                return;
+            }
+            
+            const clients = getClients();
+            const updatedClients = clients.filter(c => c.id !== clientId);
+            localStorage.setItem(`${window.currentBusinessType}Clients`, JSON.stringify(updatedClients));
+            
+            renderClients();
+            updateClientAnalytics();
+            
+            alert('Client deleted successfully!');
+        }
+        
+        function filterClients() {
+            const searchTerm = document.getElementById('clientSearch').value.toLowerCase();
+            const typeFilter = document.getElementById('clientTypeFilter').value;
+            const statusFilter = document.getElementById('clientStatusFilter').value;
+            
+            const clients = getClients();
+            const filteredClients = clients.filter(client => {
+                const matchesSearch = !searchTerm || 
+                    `${client.firstName} ${client.lastName} ${client.company} ${client.email}`.toLowerCase().includes(searchTerm);
+                const matchesType = !typeFilter || client.type === typeFilter;
+                const matchesStatus = !statusFilter || client.status === statusFilter;
+                
+                return matchesSearch && matchesType && matchesStatus;
+            });
+            
+            // Render filtered clients
+            const tbody = document.getElementById('clientTableBody');
+            if (filteredClients.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 40px;">No clients found matching your criteria.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = filteredClients.map(client => `
+                <tr class="client-row" data-id="${client.id}">
+                    <td><strong>${client.firstName} ${client.lastName}</strong></td>
+                    <td>${client.company || '-'}</td>
+                    <td><a href="mailto:${client.email}" class="client-email">${client.email}</a></td>
+                    <td><a href="tel:${client.phone}" class="client-phone">${client.phone || '-'}</a></td>
+                    <td><span class="client-type ${client.type}">${client.type}</span></td>
+                    <td><span class="client-status ${client.status}">${client.status}</span></td>
+                    <td>${client.projects}</td>
+                    <td>$${client.totalRevenue.toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" onclick="deleteClient('${client.id}')" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Client database page loaded');
+        });
+    </script>
+</body>
+</html>
