@@ -31,7 +31,29 @@
     }
     
     .login-right {
-        display: none !important;
+        display: block !important;
+        width: 100% !important;
+        padding: 30px 20px !important;
+    }
+    
+    .login-form {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+    
+    .login-form h2 {
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+        color: white !important;
+    }
+    
+    .login-form p {
+        font-size: 1rem !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+        color: rgba(255,255,255,0.8) !important;
     }
     
     .login-left h1 {
@@ -44,6 +66,10 @@
         font-size: 1rem !important;
         text-align: center !important;
         margin-bottom: 20px !important;
+    }
+    
+    .features {
+        display: none !important;
     }
     
     .logo-primary {
