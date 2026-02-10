@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: #22c55e; }
+        .error { color: #ef4444; }
+        .info { color: #3b82f6; }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #2563eb; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 User Info Debug Tool</h1>
+    
+    <div class="debug-section">
+        <h2>Current Storage State</h2>
+        <div id="storageInfo"></div>
+        <button onclick="checkStorage()">Check Storage</button>
+        <button onclick="clearStorage()">Clear Storage</button>
+        <button onclick="createTestData()">Create Test Data</button>
+    </div>
+    
+    <div class="debug-section">
+        <h2>DOM Elements</h2>
+        <div id="domInfo"></div>
+        <button onclick="checkDOM()">Check DOM</button>
+        <button onclick="updateDOM()">Update DOM</button>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Actions</h2>
+        <button onclick="goToLoginPage()">Go to Login</button>
+        <button onclick="goToMainPage()">Go to Main Page</button>
+        <button onclick="testUserInfo()">Test User Info</button>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Console Log</h2>
+        <div id="consoleLog"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('consoleLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type;
+            logDiv.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        function checkStorage() {
+            log('Checking storage...', 'info');
+            
+            const localStorageData = localStorage.getItem('currentUser');
+            const sessionStorageData = sessionStorage.getItem('currentUser');
+            
+            let html = '<h3>LocalStorage:</h3>';
+            if (localStorageData) {
+                try {
+                    const parsed = JSON.parse(localStorageData);
+                    html += `<pre class="success">${JSON.stringify(parsed, null, 2)}</pre>`;
+                } catch (e) {
+                    html += `<pre class="error">Invalid JSON: ${localStorageData}</pre>`;
+                }
+            } else {
+                html += '<p class="error">No data in localStorage</p>';
+            }
+            
+            html += '<h3>SessionStorage:</h3>';
+            if (sessionStorageData) {
+                try {
+                    const parsed = JSON.parse(sessionStorageData);
+                    html += `<pre class="success">${JSON.stringify(parsed, null, 2)}</pre>`;
+                } catch (e) {
+                    html += `<pre class="error">Invalid JSON: ${sessionStorageData}</pre>`;
+                }
+            } else {
+                html += '<p class="error">No data in sessionStorage</p>';
+            }
+            
+            document.getElementById('storageInfo').innerHTML = html;
+        }
+
+        function clearStorage() {
+            log('Clearing storage...', 'info');
+            localStorage.removeItem('currentUser');
+            sessionStorage.removeItem('currentUser');
+            checkStorage();
+        }
+
+        function createTestData() {
+            log('Creating test data...', 'info');
+            const testData = {
+                username: 'Test User',
+                name: 'Test User',
+                email: 'test@example.com',
+                role: 'admin',
+                loginTime: new Date().toLocaleString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(testData));
+            sessionStorage.setItem('currentUser', JSON.stringify(testData));
+            
+            log('Test data created', 'success');
+            checkStorage();
+        }
+
+        function checkDOM() {
+            log('Checking DOM elements...', 'info');
+            
+            const elements = ['userWelcome', 'userRole', 'loginTime'];
+            let html = '';
+            
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    html += `<div class="success">✅ ${id}: "${element.textContent}" (Display: ${element.style.display || 'default'})</div>`;
+                } else {
+                    html += `<div class="error">❌ ${id}: Not found</div>`;
+                }
+            });
+            
+            // Also check parent page if in iframe
+            if (window.parent && window.parent !== window) {
+                try {
+                    elements.forEach(id => {
+                        const element = window.parent.document.getElementById(id);
+                        if (element) {
+                            html += `<div class="success">✅ Parent ${id}: "${element.textContent}"</div>`;
+                        } else {
+                            html += `<div class="error">❌ Parent ${id}: Not found</div>`;
+                        }
+                    });
+                } catch (e) {
+                    html += `<div class="error">Cannot access parent DOM: ${e.message}</div>`;
+                }
+            }
+            
+            document.getElementById('domInfo').innerHTML = html;
+        }
+
+        function updateDOM() {
+            log('Updating DOM...', 'info');
+            
+            const testData = {
+                username: 'Debug User',
+                role: 'debugger',
+                loginTime: new Date().toLocaleString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(testData));
+            
+            // Update current page
+            const elements = ['userWelcome', 'userRole', 'loginTime'];
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    switch(id) {
+                        case 'userWelcome':
+                            element.textContent = `Welcome, ${testData.username}`;
+                            break;
+                        case 'userRole':
+                            element.textContent = `Role: ${testData.role.charAt(0).toUpperCase() + testData.role.slice(1)}`;
+                            break;
+                        case 'loginTime':
+                            element.textContent = `Login: ${testData.loginTime}`;
+                            break;
+                    }
+                    element.style.display = 'block';
+                    log(`Updated ${id}`, 'success');
+                }
+            });
+            
+            checkDOM();
+        }
+
+        function goToLoginPage() {
+            log('Going to login page...', 'info');
+            window.location.href = 'login.html';
+        }
+
+        function goToMainPage() {
+            log('Going to main page...', 'info');
+            window.location.href = 'Project Records.html';
+        }
+
+        function testUserInfo() {
+            log('Testing user info...', 'info');
+            
+            // Create test data
+            const testData = {
+                username: 'Test User',
+                name: 'Test User',
+                email: 'test@example.com',
+                role: 'admin',
+                loginTime: new Date().toLocaleString()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(testData));
+            
+            log('Test data created, checking main page...', 'info');
+            
+            // Try to update main page if it exists
+            if (window.opener && !window.opener.closed) {
+                try {
+                    window.opener.location.reload();
+                    log('Main page reloaded', 'success');
+                } catch (e) {
+                    log('Could not reload main page: ' + e.message, 'error');
+                }
+            }
+        }
+
+        // Auto-check on load
+        window.addEventListener('load', function() {
+            log('Debug tool loaded', 'success');
+            checkStorage();
+            checkDOM();
+        });
+    </script>
+</body>
+</html>
