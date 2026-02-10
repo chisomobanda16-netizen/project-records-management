@@ -1,20 +1,40 @@
 // Project Records - Professional Media Management System
 
-// Login and Authentication System
-// Check if enhanced auth manager is available, otherwise use fallback
-const AuthManager = window.enhancedAuthManager || {
+// Enhanced Authentication Manager with Firebase Support
+const AuthManager = {
     checkLogin() {
         try {
-            let userData = window.storageManager ? 
-                window.storageManager.loadData('currentUser', 'session') : 
-                sessionStorage.getItem('currentUser');
+            let userData = null;
             
-            if (!userData && window.storageManager) {
-                userData = window.storageManager.loadData('currentUser', 'local');
+            // Try Firebase Auth first
+            if (window.firebase && window.firebase.auth) {
+                const user = firebase.auth().currentUser;
+                if (user) {
+                    userData = {
+                        email: user.email,
+                        username: user.email.split('@')[0],
+                        role: 'Admin User',
+                        loginTime: new Date().toLocaleString()
+                    };
+                    // Save to local storage as backup
+                    if (window.storageManager) {
+                        window.storageManager.saveData('currentUser', userData, 'local');
+                    } else {
+                        localStorage.setItem('currentUser', JSON.stringify(userData));
+                    }
+                    this.updateUserInfo(userData);
+                    return true;
+                }
+            }
+            
+            // Fallback to local storage if Firebase not available
+            if (window.storageManager) {
+                userData = window.storageManager.loadData('currentUser', 'session') || 
+                           window.storageManager.loadData('currentUser', 'local');
             }
             
             if (!userData) {
-                userData = localStorage.getItem('currentUser');
+                userData = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
             }
             
             if (userData) {
@@ -3014,19 +3034,82 @@ ${businessName}
     // Local Storage Methods
     saveProjects() {
         const key = this.businessType === 'digitalFootprints' ? 'digitalFootprintsProjects' : 'filmFixerProjects';
-        localStorage.setItem(key, JSON.stringify(this.projects));
+        
+        // Try Firebase first
+        if (window.firebase && window.firebase.database) {
+            const userId = firebase.auth().currentUser?.uid || 'anonymous';
+            firebase.database().ref(`users/${userId}/projects/${key}`)
+                .set(this.projects)
+                .then(() => {
+                    console.log('✅ Projects saved to Firebase');
+                    this.showNotification('Projects saved successfully!', 'success');
+                    // Also save to local as backup
+                    localStorage.setItem(key, JSON.stringify(this.projects));
+                })
+                .catch((error) => {
+                    console.error('Firebase save error:', error);
+                    // Fallback to local storage
+                    localStorage.setItem(key, JSON.stringify(this.projects));
+                    this.showNotification('Projects saved locally!', 'success');
+                });
+        } else {
+            // Fallback to local storage
+            localStorage.setItem(key, JSON.stringify(this.projects));
+            this.showNotification('Projects saved locally!', 'success');
+        }
     }
 
     loadProjects() {
         const key = this.businessType === 'digitalFootprints' ? 'digitalFootprintsProjects' : 'filmFixerProjects';
-        const saved = localStorage.getItem(key);
-        this.projects = saved ? JSON.parse(saved) : [];
-        return this.projects;
+        
+        // Try Firebase first
+        if (window.firebase && window.firebase.database) {
+            const userId = firebase.auth().currentUser?.uid || 'anonymous';
+            firebase.database().ref(`users/${userId}/projects/${key}`)
+                .once('value')
+                .then((snapshot) => {
+                    this.projects = snapshot.val() || [];
+                    this.renderProjects();
+                    this.updateDashboard();
+                })
+                .catch((error) => {
+                    console.error('Firebase load error:', error);
+                    // Fallback to local storage
+                    const saved = localStorage.getItem(key);
+                    this.projects = saved ? JSON.parse(saved) : [];
+                    this.renderProjects();
+                    this.updateDashboard();
+                });
+        } else {
+            // Fallback to local storage
+            const saved = localStorage.getItem(key);
+            this.projects = saved ? JSON.parse(saved) : [];
+            this.renderProjects();
+            this.updateDashboard();
+        }
     }
 
     saveCurrency() {
         const key = this.businessType === 'digitalFootprints' ? 'digitalFootprintsCurrency' : 'filmFixerCurrency';
-        localStorage.setItem(key, this.currentCurrency);
+        const saved = localStorage.getItem(key);
+        this.currentCurrency = saved || 'USD';
+        
+        // Update the currency selector
+        const currencySelect = document.getElementById('currency');
+        if (currencySelect) {
+            currencySelect.value = this.currentCurrency;
+        }
+        
+        // Update all expense currency selectors
+        const expenseCurrencies = ['transportCurrency', 'foodCurrency', 'accommodationCurrency', 'airtimeCurrency', 'internetCurrency', 'stationaryCurrency'];
+        expenseCurrencies.forEach(id => {
+            const selector = document.getElementById(id);
+            if (selector) {
+                selector.value = this.currentCurrency;
+            }
+        });
+        
+        return this.currentCurrency;
     }
 
     loadCurrency() {
