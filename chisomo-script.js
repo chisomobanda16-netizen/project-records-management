@@ -1,27 +1,36 @@
 // Project Records - Professional Media Management System
 
 // Login and Authentication System
-class AuthManager {
-    static checkLogin() {
-        const currentUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
-        if (!currentUser) {
-            // Redirect to login page
-            window.location.href = 'login.html';
-            return false;
-        }
-        
+// Check if enhanced auth manager is available, otherwise use fallback
+const AuthManager = window.enhancedAuthManager || {
+    checkLogin() {
         try {
-            const user = JSON.parse(currentUser);
-            this.updateUserInfo(user);
-            return true;
+            let userData = window.storageManager ? 
+                window.storageManager.loadData('currentUser', 'session') : 
+                sessionStorage.getItem('currentUser');
+            
+            if (!userData && window.storageManager) {
+                userData = window.storageManager.loadData('currentUser', 'local');
+            }
+            
+            if (!userData) {
+                userData = localStorage.getItem('currentUser');
+            }
+            
+            if (userData) {
+                const user = typeof userData === 'string' ? JSON.parse(userData) : userData;
+                this.updateUserInfo(user);
+                return true;
+            }
+            return false;
         } catch (error) {
             console.error('Invalid user session:', error);
             this.logout();
             return false;
         }
-    }
+    },
     
-    static updateUserInfo(user) {
+    updateUserInfo(user) {
         const welcomeEl = document.getElementById('userWelcome');
         const roleEl = document.getElementById('userRole');
         const timeEl = document.getElementById('loginTime');
@@ -42,19 +51,31 @@ class AuthManager {
                 timeEl.textContent = `Logged in: ${hours} hour${hours > 1 ? 's' : ''} ago`;
             }
         }
-    }
+    },
     
-    static logout() {
-        sessionStorage.removeItem('currentUser');
-        localStorage.removeItem('currentUser');
+    logout() {
+        if (window.storageManager) {
+            window.storageManager.removeData('currentUser', 'session');
+            window.storageManager.removeData('currentUser', 'local');
+        } else {
+            sessionStorage.removeItem('currentUser');
+            localStorage.removeItem('currentUser');
+        }
         window.location.href = 'login.html';
-    }
+    },
     
-    static getCurrentUser() {
-        const currentUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
-        return currentUser ? JSON.parse(currentUser) : null;
+    getCurrentUser() {
+        let currentUser = null;
+        if (window.storageManager) {
+            currentUser = window.storageManager.loadData('currentUser', 'session') || 
+                         window.storageManager.loadData('currentUser', 'local');
+        }
+        if (!currentUser) {
+            currentUser = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+        }
+        return currentUser ? (typeof currentUser === 'string' ? JSON.parse(currentUser) : currentUser) : null;
     }
-}
+};
 
 // Global logout function
 function logout() {
