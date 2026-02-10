@@ -107,14 +107,15 @@
         margin-bottom: 5px !important;
         font-size: 14px !important;
         color: black !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
     }
     
     .form-group input {
         width: 100% !important;
         padding: 12px !important;
         font-size: 14px !important;
-        border: 1px solid rgba(0,0,0,0.3) !important;
+        border: 2px solid rgba(0,0,0,0.3) !important;
         border-radius: 8px !important;
         background: white !important;
         color: black !important;
@@ -122,7 +123,8 @@
     }
     
     .form-group input::placeholder {
-        color: rgba(0,0,0,0.5) !important;
+        color: rgba(0,0,0,0.6) !important;
+        font-style: normal !important;
     }
     
     .form-group input:focus {
@@ -135,10 +137,15 @@
     .remember-me {
         color: black !important;
         font-size: 14px !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        margin-bottom: 15px !important;
     }
     
     .remember-me input[type="checkbox"] {
         margin-right: 8px !important;
+        transform: scale(1.2) !important;
     }
     
     .forgot-link {
@@ -148,6 +155,7 @@
         font-size: 0.9rem !important;
         color: var(--orange-600) !important;
         text-decoration: none !important;
+        font-weight: 500 !important;
     }
     
     .forgot-link:hover {
@@ -163,12 +171,25 @@
         font-size: 0.9rem !important;
         color: var(--orange-600) !important;
         text-decoration: none !important;
+        font-weight: 500 !important;
     }
     
     .change-password-link:hover,
     .change-login-link:hover {
         color: var(--orange-700) !important;
         text-decoration: underline !important;
+    }
+    
+    /* Force all text to be visible */
+    * {
+        color: inherit !important;
+    }
+    
+    .login-form *,
+    .login-left *,
+    .login-right * {
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .login-btn {
@@ -187,20 +208,6 @@
     
     .login-btn:hover {
         background: var(--orange-600) !important;
-    }
-    
-    .forgot-link {
-        display: block !important;
-        text-align: center !important;
-        margin-top: 15px !important;
-        font-size: 0.9rem !important;
-        color: rgba(255,255,255,0.8) !important;
-        text-decoration: none !important;
-    }
-    
-    .forgot-link:hover {
-        color: white !important;
-        text-decoration: underline !important;
     }
     
     .password-modal-content {
