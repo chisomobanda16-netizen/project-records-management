@@ -53,19 +53,23 @@
         font-size: 1rem !important;
         text-align: center !important;
         margin-bottom: 20px !important;
-        color: rgba(255,255,255,0.8) !important;
+        color: rgba(255,255,255,0.9) !important;
+        opacity: 1 !important;
     }
     
     .login-left h1 {
         font-size: 1.8rem !important;
         margin-bottom: 10px !important;
         text-align: center !important;
+        color: white !important;
     }
     
     .login-left p {
         font-size: 1rem !important;
         text-align: center !important;
         margin-bottom: 20px !important;
+        color: rgba(255,255,255,0.9) !important;
+        opacity: 1 !important;
     }
     
     .features {
