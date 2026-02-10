@@ -1,0 +1,36 @@
+# Exclude large files from ZIP
+nodejs.msi
+*.msi
+*.exe
+*.dmg
+*.pkg
+
+# Exclude development files
+.git/
+.gitignore
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Exclude documentation files (optional for deployment)
+CREDENTIALS_README.md
+LOGO_GUIDELINES.md
+FIREBASE_SETUP.md
+CLOUDFLARE_DEPLOYMENT.md
+DEPLOYMENT_GUIDE.md
+QUICK_DEPLOY.md
+CLOUDFLARE_UPLOAD_GUIDE.md
+
+# Exclude test files
+test-*.html
+debug-*.html
+email-debug.html
+direct-reset-test.html
+test-emailjs.html
+get-correct-key.html
+configure-emailjs.html
+emailjs-setup.html
+emailjs-template-setup.html
+
+# Exclude development scripts
+push-to-github.bat

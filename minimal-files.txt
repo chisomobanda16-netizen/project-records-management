@@ -1,0 +1,17 @@
+login.html
+Project Records.html
+invoice_system.html
+client_database.html
+reset-password.html
+index.html
+styles-chisomo.css
+logo-styles.css
+chisomo-script.js
+config.js
+storage-manager.js
+user-info-fix.js
+quick-fix.js
+direct-fix.js
+projects-table-fix.js
+firebase-config.js
+firebase-auth.js

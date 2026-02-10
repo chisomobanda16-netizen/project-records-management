@@ -1,0 +1,666 @@
+/* Mobile Responsive Styles for Project Records System */
+
+/* Base mobile styles */
+@media screen and (max-width: 768px) {
+    /* General mobile adjustments */
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    /* Login page mobile styles */
+    .login-container {
+        flex-direction: column;
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .login-left {
+        padding: 30px 20px;
+        min-height: auto;
+    }
+    
+    .login-right {
+        display: none;
+    }
+    
+    .login-left h1 {
+        font-size: 1.8rem;
+    }
+    
+    .login-left p {
+        font-size: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group input {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .login-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .forgot-link {
+        font-size: 0.9rem;
+    }
+    
+    /* Modal mobile styles */
+    .password-modal-content {
+        margin: 10px;
+        padding: 20px;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .password-modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .password-modal-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .password-form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .password-form-actions button {
+        width: 100%;
+    }
+    
+    /* Project Records page mobile styles */
+    .header {
+        padding: 15px 10px;
+    }
+    
+    .logo-primary {
+        margin-bottom: 15px;
+    }
+    
+    .logo-text {
+        text-align: center;
+    }
+    
+    .logo-main {
+        font-size: 1.2rem;
+    }
+    
+    .logo-sub {
+        font-size: 0.8rem;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .user-info div {
+        width: 100%;
+    }
+    
+    .user-info button {
+        margin: 5px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .business-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .business-card {
+        padding: 20px 15px;
+    }
+    
+    .business-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .business-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Form mobile styles */
+    .form-card {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .form-card h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .form-group textarea {
+        min-height: 100px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    /* Table mobile styles */
+    .table-card {
+        padding: 15px 10px;
+        margin-bottom: 20px;
+    }
+    
+    .table-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .table-header h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-controls input,
+    .filter-controls select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .projects-table {
+        font-size: 12px;
+        border-collapse: collapse;
+    }
+    
+    .projects-table th,
+    .projects-table td {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+    
+    .projects-table th {
+        font-size: 10px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .action-buttons button {
+        padding: 4px 6px;
+        font-size: 10px;
+        margin: 0;
+    }
+    
+    /* Stats cards mobile */
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .stat-card h3 {
+        font-size: 2rem;
+    }
+    
+    .stat-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Invoice system mobile */
+    .invoice-system-container {
+        padding: 15px 10px;
+    }
+    
+    .invoice-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .invoice-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .invoice-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .invoice-controls button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .invoice-tabs {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    
+    .invoice-tab {
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid var(--grey-200);
+        border-radius: 0;
+    }
+    
+    .invoice-tab.active {
+        border-bottom-color: var(--orange-500);
+    }
+    
+    .invoice-form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .invoice-item-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .invoice-totals {
+        padding: 15px;
+    }
+    
+    .totals-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .total-item {
+        padding: 10px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Client database mobile */
+    .client-database-container {
+        padding: 15px 10px;
+    }
+    
+    .client-analytics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .analytics-card {
+        padding: 15px 10px;
+        text-align: center;
+    }
+    
+    .analytics-card h4 {
+        font-size: 0.8rem;
+    }
+    
+    .analytics-card p {
+        font-size: 1.5rem;
+    }
+    
+    .client-search-section {
+        padding: 15px;
+    }
+    
+    .search-filters {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .client-table {
+        font-size: 12px;
+    }
+    
+    .client-table th,
+    .client-table td {
+        padding: 6px 2px;
+        font-size: 10px;
+    }
+    
+    /* Modal mobile styles */
+    .client-modal-content {
+        margin: 10px;
+        padding: 20px;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .client-modal-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .client-form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .client-form-actions button {
+        width: 100%;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: 20px 10px;
+        text-align: center;
+    }
+    
+    .footer p {
+        font-size: 0.9rem;
+    }
+    
+    /* Notification mobile */
+    .notification {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        font-size: 14px;
+        z-index: 10000;
+    }
+    
+    /* Success/Error messages mobile */
+    .success-message,
+    .error-message {
+        margin: 10px;
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    /* Loading mobile */
+    .loading {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .loading i {
+        font-size: 2rem;
+    }
+    
+    /* Business selection mobile */
+    .business-selection {
+        padding: 20px 10px;
+    }
+    
+    .business-selection-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .business-selection h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    
+    .business-options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .business-option {
+        padding: 30px 20px;
+    }
+    
+    .business-option h3 {
+        font-size: 1.3rem;
+    }
+    
+    .business-option p {
+        font-size: 1rem;
+    }
+    
+    .business-option ul {
+        font-size: 0.9rem;
+    }
+    
+    /* Invoice preview mobile */
+    .invoice-preview-content {
+        margin: 10px;
+        padding: 20px;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .invoice-preview-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    /* Password reset mobile */
+    .reset-container {
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .reset-header {
+        padding: 30px 20px;
+    }
+    
+    .reset-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .reset-body {
+        padding: 30px 20px;
+    }
+    
+    .reset-main-container {
+        padding: 20px 10px;
+    }
+    
+    /* Hide some elements on very small screens */
+    @media screen and (max-width: 480px) {
+        .projects-table {
+            font-size: 10px;
+        }
+        
+        .projects-table th,
+        .projects-table td {
+            padding: 6px 2px;
+            font-size: 9px;
+        }
+        
+        .action-buttons button {
+            padding: 2px 4px;
+            font-size: 8px;
+        }
+        
+        .client-analytics {
+            grid-template-columns: 1fr;
+        }
+        
+        .business-option ul li {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .business-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .client-analytics {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .invoice-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projects-table {
+        font-size: 13px;
+    }
+    
+    .projects-table th,
+    .projects-table td {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+}
+
+/* Landscape mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .login-container {
+        flex-direction: row;
+        max-height: 100vh;
+    }
+    
+    .login-left {
+        flex: 1;
+        padding: 20px;
+    }
+    
+    .login-right {
+        flex: 1;
+        display: block;
+        padding: 20px;
+    }
+}
+
+/* Ensure all modals are mobile-friendly */
+@media screen and (max-width: 768px) {
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+    }
+    
+    .modal-content {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .modal-header {
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .modal-body {
+        padding: 15px;
+        overflow-y: auto;
+    }
+    
+    .modal-footer {
+        padding: 15px;
+        text-align: center;
+    }
+}
+
+/* Fix for iOS Safari */
+@media screen and (max-width: 768px) {
+    input,
+    textarea,
+    select {
+        font-size: 16px !important;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 8px;
+    }
+    
+    button {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 8px;
+    }
+}
+
+/* Print styles for mobile */
+@media print and (max-width: 768px) {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        font-size: 12px;
+        padding: 0;
+    }
+    
+    .projects-table {
+        font-size: 10px;
+    }
+}
