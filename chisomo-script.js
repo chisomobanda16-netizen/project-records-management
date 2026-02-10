@@ -627,7 +627,17 @@ class ProjectManager {
                 <td>${this.formatCurrency(project.upfrontPayment, project.currency)}</td>
                 <td><strong style="color: ${project.balance <= 0 ? 'var(--orange-600)' : 'var(--grey-700)'}">${this.formatCurrency(project.balance, project.currency)}</strong></td>
                 <td><strong style="color: ${project.totalExpenses > 0 ? 'var(--orange-600)' : 'var(--grey-700)'}">${formatExpenses(project)}</strong></td>
-                <td style="max-width: 200px; word-wrap: break-word;">${project.projectDetails || '-'}</td>
+                <td style="max-width: 250px; word-wrap: break-word; white-space: normal; padding: 8px;">
+                    <div style="font-size: 12px; line-height: 1.4;">
+                        ${project.projectDetails ? 
+                            `<div style="background: #f8f9fa; padding: 8px; border-radius: 4px; border-left: 3px solid var(--orange-500);">
+                                <small style="color: #666; display: block; margin-bottom: 4px;">Details:</small>
+                                <div style="color: #333;">${project.projectDetails}</div>
+                            </div>` : 
+                            '<span style="color: #999; font-style: italic;">No details</span>'
+                        }
+                    </div>
+                </td>
                 <td>${this.getStatusBadge(project.balance)}</td>
                 <td>
                     <div class="action-buttons">
